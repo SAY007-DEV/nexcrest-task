@@ -30,62 +30,62 @@ function Address({ nextStep, prevStep, updateFormData, formData }) {
   };
 
   return (
-    <div className="bg-gray-200 min-h-screen flex items-center justify-center p-6">
-      <div className="bg-white rounded-xl p-8 shadow-lg max-w-md w-full">
-        <nav className="flex items-center justify-between mb-8">
-          <div className="flex items-center space-x-4">
-            <div className="flex flex-col items-center">
-              <div className="w-8 h-8 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center font-semibold">
-                1
+    <div className="bg-gray-100 min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8">
+        <div className="bg-white p-8 rounded-2xl shadow-lg">
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center space-x-2 sm:space-x-4 w-full">
+              <div className="flex flex-col items-center opacity-50">
+                <div className="w-8 h-8 rounded-full bg-gray-300 text-gray-600 flex items-center justify-center font-bold">1</div>
+                <span className="text-xs text-center mt-1">Personal Info</span>
               </div>
-              <span className="text-center text-sm mt-1">Personal<br />Information</span>
-            </div>
-            <div className="flex-1 h-[1px] bg-gray-300" />
-            <div className="flex flex-col items-center">
-              <div className="w-8 h-8 rounded-full bg-[#3f3fbf] text-white flex items-center justify-center font-semibold">
-                2
+              <div className="flex-1 h-px bg-gray-300"></div>
+              <div className="flex flex-col items-center">
+                <div className="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold">2</div>
+                <span className="text-xs text-center mt-1">Address</span>
               </div>
-              <span className="text-center text-sm mt-1">Address</span>
-            </div>
-            <div className="flex-1 h-[1px] bg-gray-300" />
-            <div className="flex flex-col items-center">
-              <div className="w-8 h-8 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center font-semibold">
-                3
+              <div className="flex-1 h-px bg-gray-300"></div>
+              <div className="flex flex-col items-center opacity-50">
+                <div className="w-8 h-8 rounded-full bg-gray-300 text-gray-600 flex items-center justify-center font-bold">3</div>
+                <span className="text-xs text-center mt-1">Review</span>
               </div>
-              <span className="text-center text-sm mt-1">Review &amp; Submit</span>
             </div>
           </div>
-        </nav>
-        <h2 className="text-2xl font-bold text-[#0a101f] mb-6">Address</h2>
-        <form>
-          <label className="block mb-2 font-semibold text-sm" htmlFor="country">Country</label>
-          <select id="country" className="w-full mb-4 px-3 py-2 border border-gray-300 rounded-md" 
-                  value={countries.find(c => c.name === formData.country)?.code || ''} 
-                  onChange={handleCountryChange}>
-            <option value="">Select Country</option>
-            {countries.map(c => <option key={c.code} value={c.code}>{c.name}</option>)}
-          </select>
-          
-          <label className="block mb-2 font-semibold text-sm" htmlFor="state">State</label>
-          <select id="state" className="w-full mb-4 px-3 py-2 border border-gray-300 rounded-md" 
-                  value={formData.state} 
-                  onChange={handleChange} 
-                  disabled={!formData.country}>
-            <option value="">Select State</option>
-            {states.map(s => <option key={s.name} value={s.name}>{s.name}</option>)}
-          </select>
-
-          <label className="block mb-2 font-semibold text-sm" htmlFor="city">City</label>
-          <input id="city" type="text" className="w-full mb-4 px-3 py-2 border border-gray-300 rounded-md" value={formData.city} onChange={handleChange} disabled={!formData.state} />
-
-          <label className="block mb-2 font-semibold text-sm" htmlFor="zipCode">Zip Code</label>
-          <input id="zipCode" type="text" className="w-full mb-6 px-3 py-2 border border-gray-300 rounded-md" value={formData.zipCode} onChange={handleChange} />
-          
-          <div className="flex justify-between">
-            <button type="button" className="border rounded-md px-5 py-2" onClick={prevStep}>Back</button>
-            <button type="button" className="bg-[#3f3fbf] text-white px-5 py-2 rounded-md" onClick={nextStep}>Next</button>
-          </div>
-        </form>
+          <h2 className="text-2xl font-extrabold text-gray-900 mb-6">Address</h2>
+          <form>
+            <div>
+              <label className="block text-sm font-medium text-gray-700" htmlFor="country">Country</label>
+              <select id="country" className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                      value={countries.find(c => c.name === formData.country)?.code || ''}
+                      onChange={handleCountryChange}>
+                <option value="">Select Country</option>
+                {countries.map(c => <option key={c.code} value={c.code}>{c.name}</option>)}
+              </select>
+            </div>
+            <div className="mt-4">
+              <label className="block text-sm font-medium text-gray-700" htmlFor="state">State</label>
+              <select id="state" className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                      value={formData.state}
+                      onChange={handleChange}
+                      disabled={!formData.country}>
+                <option value="">Select State</option>
+                {states.map(s => <option key={s.name} value={s.name}>{s.name}</option>)}
+              </select>
+            </div>
+            <div className="mt-4">
+              <label className="block text-sm font-medium text-gray-700" htmlFor="city">City</label>
+              <input id="city" type="text" className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500" value={formData.city} onChange={handleChange} disabled={!formData.state} />
+            </div>
+            <div className="mt-4">
+              <label className="block text-sm font-medium text-gray-700" htmlFor="zipCode">Zip Code</label>
+              <input id="zipCode" type="text" className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500" value={formData.zipCode} onChange={handleChange} />
+            </div>
+            <div className="flex justify-between mt-6">
+              <button type="button" className="w-full sm:w-auto bg-gray-200 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400" onClick={prevStep}>Back</button>
+              <button type="button" className="w-full sm:w-auto bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" onClick={nextStep}>Next</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );
