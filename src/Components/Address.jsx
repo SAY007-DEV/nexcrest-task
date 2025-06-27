@@ -26,8 +26,16 @@ function Address({ nextStep, prevStep, updateFormData, formData }) {
 
   const handleChange = (e) => {
     const { id, value } = e.target;
-    updateFormData({ [id]: value });
+    let processedValue = value;
+
+    if (id === 'zipCode') {
+      processedValue = value.replace(/[^0-9]/g, '');
+    }
+
+    updateFormData({ [id]: processedValue });
   };
+
+  const isNextDisabled = !formData.country || !formData.state || !formData.city || !formData.zipCode;
 
   return (
     <div className="bg-gray-100 min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
@@ -82,7 +90,7 @@ function Address({ nextStep, prevStep, updateFormData, formData }) {
             </div>
             <div className="flex justify-between mt-6">
               <button type="button" className="w-full sm:w-auto bg-gray-200 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400" onClick={prevStep}>Back</button>
-              <button type="button" className="w-full sm:w-auto bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" onClick={nextStep}>Next</button>
+              <button type="button" className="w-full sm:w-auto bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" onClick={nextStep} disabled={isNextDisabled}>Next</button>
             </div>
           </form>
         </div>

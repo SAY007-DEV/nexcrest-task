@@ -10,7 +10,13 @@ function PersonalInfo({ nextStep, updateFormData, formData }) {
 
   const handleChange = (e) => {
     const { id, value } = e.target;
-    updateFormData({ [id]: value });
+    let processedValue = value;
+
+    if (id === 'phone') {
+      processedValue = value.replace(/[^0-9]/g, '');
+    }
+    
+    updateFormData({ [id]: processedValue });
 
     if (id === 'email') {
       if (!validateEmail(value)) {
@@ -28,6 +34,8 @@ function PersonalInfo({ nextStep, updateFormData, formData }) {
       setEmailError('Invalid email format');
     }
   };
+
+  const isNextDisabled = !formData.fullName || !formData.email || !formData.phone || !!emailError;
 
   return (
     <div className="bg-gray-100 min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
@@ -68,7 +76,7 @@ function PersonalInfo({ nextStep, updateFormData, formData }) {
               <input id="phone" type="tel" placeholder="123-456-7890" className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500" value={formData.phone} onChange={handleChange} />
             </div>
             <div className="flex justify-end mt-6">
-              <button type="button" className="w-full sm:w-auto bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50" onClick={handleNext} disabled={!formData.email || !!emailError}>
+              <button type="button" className="w-full sm:w-auto bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50" onClick={handleNext} disabled={isNextDisabled}>
                 Next
               </button>
             </div>
