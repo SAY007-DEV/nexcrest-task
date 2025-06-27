@@ -19,14 +19,12 @@ This project is a modern, responsive multi-step form built with React and Tailwi
 
 ## Getting Started
 
-### Prerequisites
-- [Node.js](https://nodejs.org/) (v14 or higher recommended)
-- [npm](https://www.npmjs.com/) (comes with Node.js)
+
 
 ### Installation
 1. **Clone the repository:**
    ```bash
-   git clone <your-repo-url>
+   git clone https://github.com/SAY007-DEV/nexcrest-task
    cd front-end
    ```
 2. **Install dependencies:**
@@ -40,7 +38,7 @@ Start the development server:
 npm run dev
 ```
 
-The app will be available at [http://localhost:5173](http://localhost:5173) (or the port shown in your terminal).
+The app will be available at [http://localhost:5173] (or the port shown in your terminal).
 
 ## Project Structure
 ```
