@@ -10,7 +10,7 @@ function PersonalInfo({ nextStep, updateFormData, formData }) {
   };
 
   const validatePhone = (phone) => {
-    // Require exactly 10 digits
+    
     return /^\d{10}$/.test(phone);
   };
 

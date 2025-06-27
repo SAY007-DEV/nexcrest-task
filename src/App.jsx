@@ -7,11 +7,11 @@ import Review from './Components/Review'
 import Success from './Components/Success'
 
 const initialFormData = {
-  // PersonalInfo
+
   fullName: '',
   email: '',
   phone: '',
-  // Address
+
   country: '',
   state: '',
   city: '',
