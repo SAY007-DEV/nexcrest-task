@@ -1,0 +1,29 @@
+{
+    "countries": [
+      { "code": "AE", "name": "United Arab Emirates" },
+      { "code": "IN", "name": "India" },
+      { "code": "US", "name": "United States" },
+      { "code": "UK", "name": "United Kingdom" }
+    ],
+    "states": [
+      { "name": "Abu Dhabi", "countryCode": "AE" },
+      { "name": "Dubai", "countryCode": "AE" },
+      { "name": "Sharjah", "countryCode": "AE" },
+      { "name": "Ajman", "countryCode": "AE" },
+  
+      { "name": "Kerala", "countryCode": "IN" },
+      { "name": "Tamil Nadu", "countryCode": "IN" },
+      { "name": "Delhi", "countryCode": "IN" },
+      { "name": "Karnataka", "countryCode": "IN" },
+  
+      { "name": "California", "countryCode": "US" },
+      { "name": "Texas", "countryCode": "US" },
+      { "name": "New York", "countryCode": "US" },
+      { "name": "Florida", "countryCode": "US" },
+  
+      { "name": "England", "countryCode": "UK" },
+      { "name": "Scotland", "countryCode": "UK" },
+      { "name": "Wales", "countryCode": "UK" },
+      { "name": "Northern Ireland", "countryCode": "UK" }
+    ]
+  }
