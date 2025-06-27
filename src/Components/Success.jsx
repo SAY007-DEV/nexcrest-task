@@ -13,7 +13,7 @@ const Success = ({ resetForm }) => {
           <h2 className="text-2xl font-extrabold text-gray-900 mt-6">Success!</h2>
           <p className="text-gray-600 mt-2">Your information has been submitted successfully.</p>
           <div className="mt-8 flex justify-center space-x-4">
-            <button type="button" className="w-full sm:w-auto bg-gray-200 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400" onClick={() => alert('OK button clicked!')}>
+            <button type="button" className="w-full sm:w-auto bg-gray-200 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400" onClick={() => alert('OK ')}>
               OK
             </button>
             <button type="button" className="w-full sm:w-auto bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" onClick={resetForm}>

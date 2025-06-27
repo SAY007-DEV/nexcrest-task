@@ -4,13 +4,20 @@ function Address({ nextStep, prevStep, updateFormData, formData }) {
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
   const [allStates, setAllStates] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setIsLoading(true);
     fetch('/data/Countries.json')
       .then(response => response.json())
       .then(data => {
         setCountries(data.countries);
         setAllStates(data.states);
+        setIsLoading(false);
+      })
+      .catch(error => {
+        console.error("Failed to fetch countries data:", error);
+        setIsLoading(false);
       });
   }, []);
 
@@ -36,6 +43,14 @@ function Address({ nextStep, prevStep, updateFormData, formData }) {
   };
 
   const isNextDisabled = !formData.country || !formData.state || !formData.city || !formData.zipCode;
+
+  if (isLoading) {
+    return (
+      <div className="bg-gray-100 min-h-screen flex items-center justify-center">
+        <div className="text-lg font-semibold text-gray-700">Loading...</div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-gray-100 min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">

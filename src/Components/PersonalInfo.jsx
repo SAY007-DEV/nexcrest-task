@@ -2,10 +2,16 @@ import React, { useState } from 'react'
 
 function PersonalInfo({ nextStep, updateFormData, formData }) {
   const [emailError, setEmailError] = useState('');
+  const [phoneError, setPhoneError] = useState('');
 
   const validateEmail = (email) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
+  };
+
+  const validatePhone = (phone) => {
+    // Require exactly 10 digits
+    return /^\d{10}$/.test(phone);
   };
 
   const handleChange = (e) => {
@@ -14,6 +20,11 @@ function PersonalInfo({ nextStep, updateFormData, formData }) {
 
     if (id === 'phone') {
       processedValue = value.replace(/[^0-9]/g, '');
+      if (!validatePhone(processedValue)) {
+        setPhoneError('Phone number must be exactly 10 digits');
+      } else {
+        setPhoneError('');
+      }
     }
     
     updateFormData({ [id]: processedValue });
@@ -28,14 +39,15 @@ function PersonalInfo({ nextStep, updateFormData, formData }) {
   };
 
   const handleNext = () => {
-    if (validateEmail(formData.email)) {
+    if (validateEmail(formData.email) && validatePhone(formData.phone)) {
       nextStep();
     } else {
-      setEmailError('Invalid email format');
+      if (!validateEmail(formData.email)) setEmailError('Invalid email format');
+      if (!validatePhone(formData.phone)) setPhoneError('Phone number must be exactly 10 digits');
     }
   };
 
-  const isNextDisabled = !formData.fullName || !formData.email || !formData.phone || !!emailError;
+  const isNextDisabled = !formData.fullName || !formData.email || !formData.phone || !!emailError || !!phoneError;
 
   return (
     <div className="bg-gray-100 min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
@@ -73,7 +85,8 @@ function PersonalInfo({ nextStep, updateFormData, formData }) {
             </div>
             <div className="mt-4">
               <label className="block text-sm font-medium text-gray-700" htmlFor="phone">Phone</label>
-              <input id="phone" type="tel" placeholder="123-456-7890" className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500" value={formData.phone} onChange={handleChange} />
+              <input id="phone" type="tel" placeholder="1234567890" className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500" value={formData.phone} onChange={handleChange} maxLength={10} />
+              {phoneError && <p className="text-red-500 text-xs mt-1">{phoneError}</p>}
             </div>
             <div className="flex justify-end mt-6">
               <button type="button" className="w-full sm:w-auto bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50" onClick={handleNext} disabled={isNextDisabled}>
